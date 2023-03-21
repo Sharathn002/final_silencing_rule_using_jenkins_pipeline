@@ -16,10 +16,10 @@ def silencing_alert(curr_time_in_millisec,json_data):
         api_token=dict["api_token"]
 
         #This is the endpoint for the silencing
-        url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
+        url='https://'+dict['region'].split('_')[0].lower()+'-'+dict['region'].split('_')[1].lower()+'.monitoring.cloud.ibm.com/api/v1/silencingRules'
 
         #this is the endpoint for all the alerts present
-        alert_url='https://'+dict['region'].split(' ')[0].lower()+'-'+dict['region'].split(' ')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
+        alert_url='https://'+dict['region'].split('_')[0].lower()+'-'+dict['region'].split('_')[1].lower()+'.monitoring.cloud.ibm.com/api/alerts'
         # print(url)
         # print(api_token)
         silence_config = {
@@ -51,8 +51,18 @@ def main():
     curr_time_in_millisec = now.timestamp() * 1000
 
     #converting the json file into python objects
-    json_file=open('template.json','r')
-    json_data = json.load(json_file)
+#     json_file=open('template.json','r')
+#     json_data = json.load(json_file)
+    duration=float(sys.argv[4])
+
+    json_data=[
+      {
+        "region":sys.argv[2],
+        "api_token": sys.argv[3],
+        "cluster_name":sys.argv[1],
+        "duration_in_hours": duration
+      }
+    ]
 
     silencing_alert(curr_time_in_millisec,json_data)
     
