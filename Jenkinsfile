@@ -11,7 +11,7 @@ pipeline {
     string(name: 'K8S_VERSION', defaultValue: '', description: 'https://cloud.ibm.com/docs/containers?topic=containers-cs_versions')
     string(name: 'DEPLOY_TOOL_VERISON', defaultValue: 'v3.1.1', description: '')
     string(name: 'SLACK_CHANNEL', defaultValue: 'pdns-slack-test-private', description: '')
-    string(name: 'cluster_name', defaultValue: 'webapCluster/cfvdf6ef0lb6gpb1puig', description: 'Enter the cluster name')
+//     string(name: 'cluster_name', defaultValue: 'webapCluster/cfvdf6ef0lb6gpb1puig', description: 'Enter the cluster name')
 //     string(name: 'region', defaultValue: '"jp tok"', description: 'Enter the region name in this formate. ex:"jp tok" ')
     choice(name: 'region', choices: ['jp_tok','jp_osa','eu_de','eu_gb','us_south','us_east','au_syd','ca_tor', 'br_sao'], description: 'Enter the region where the agent lies ')
     string(name: 'api_token', defaultValue: '3e91771e-40d2-42cd-96ac-ebe08462c96c', description: 'Enter the api token of that region')
