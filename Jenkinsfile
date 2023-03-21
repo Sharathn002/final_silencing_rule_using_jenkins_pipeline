@@ -46,29 +46,28 @@
 //   }
   
 // }
-Kubernetes-upgrade
 
 pipeline {
     agent { label 'kube_pod_slave' }
-    environment {
-        GHE_SSH_KEY = credentials('GITHUB_IBM_SSH_KEY')
-        GHE_API_KEY = credentials('GITHUB_IBM_API_KEY')
-        CIS_PROD_API_KEY = credentials('IC_CIS_API_KEY')
-        PDNS_STAGE_API_KEY = credentials('IC_STAGE_TEST_KEY')
-        PDNS_PROD_API_KEY = credentials('IC_TEST_KEY')
-        JENKINS_ENDPOINT="https://wcp-network-edge-svcs-team-jenkins.swg-devops.com"
-        JENKINS_USER = credentials('JENKINS_USER')
-        JENKINS_API = credentials('JENKINS_API')
-        AKAMAI_CLIENT_TOKEN = credentials('AKAMAI_CLIENT_TOKEN')
-        AKAMAI_CLIENT_SECRET = credentials('AKAMAI_CLIENT_SECRET')
-        AKAMAI_ACCESS_TOKEN = credentials('AKAMAI_ACCESS_TOKEN')
-        CF_EMAIL = credentials('CF_EMAIL')
-        CF_API = credentials('CF_API')
-        CF_ACCOUNT = credentials('CF_ACCOUNT')
-        SLACK_KEY = credentials('SLACK_KEY')
-        PDNS_CIS_STAGE_CRN="crn:v1:bluemix:public:internet-svcs:global:a/a4081b067ad64da4954399ba5409be7c:dfaa3571-f5a3-4233-8f22-4c2acf409f54::"
-        PDNS_CIS_PROD_CRN="crn:v1:bluemix:public:internet-svcs:global:a/fff1cdf3dc1e4ec692a5f78bbb2584bc:3d46b9c6-cf9f-4536-b8f4-dc1106c8ad41::"
-    }
+//     environment {
+//         GHE_SSH_KEY = credentials('GITHUB_IBM_SSH_KEY')
+//         GHE_API_KEY = credentials('GITHUB_IBM_API_KEY')
+//         CIS_PROD_API_KEY = credentials('IC_CIS_API_KEY')
+//         PDNS_STAGE_API_KEY = credentials('IC_STAGE_TEST_KEY')
+//         PDNS_PROD_API_KEY = credentials('IC_TEST_KEY')
+//         JENKINS_ENDPOINT="https://wcp-network-edge-svcs-team-jenkins.swg-devops.com"
+//         JENKINS_USER = credentials('JENKINS_USER')
+//         JENKINS_API = credentials('JENKINS_API')
+//         AKAMAI_CLIENT_TOKEN = credentials('AKAMAI_CLIENT_TOKEN')
+//         AKAMAI_CLIENT_SECRET = credentials('AKAMAI_CLIENT_SECRET')
+//         AKAMAI_ACCESS_TOKEN = credentials('AKAMAI_ACCESS_TOKEN')
+//         CF_EMAIL = credentials('CF_EMAIL')
+//         CF_API = credentials('CF_API')
+//         CF_ACCOUNT = credentials('CF_ACCOUNT')
+//         SLACK_KEY = credentials('SLACK_KEY')
+//         PDNS_CIS_STAGE_CRN="crn:v1:bluemix:public:internet-svcs:global:a/a4081b067ad64da4954399ba5409be7c:dfaa3571-f5a3-4233-8f22-4c2acf409f54::"
+//         PDNS_CIS_PROD_CRN="crn:v1:bluemix:public:internet-svcs:global:a/fff1cdf3dc1e4ec692a5f78bbb2584bc:3d46b9c6-cf9f-4536-b8f4-dc1106c8ad41::"
+//     }
     parameters {
         choice(name: 'UPDATE_CLUSTER', choices: ['scan', 'cis-dev-dal12', 'cis-int-mzr', 'cis-stage-wdc-mzr', 'cis-stage-lon-mzr', 'cis-prod-dal', 'cis-prod-wdc', 'cis-prod-fra', 'pdns-cp-dev-dal12', 'pdns-dp-dev-dal10', 'pdns-cp-stage-wdc-mzr', 'pdns-cp-stage-lon-mzr', 'pdns-dp-stage-wdc04', 'pdns-dp-stage-lon04', 'dev-dp', 'cis-prod-dal', 'cis-prod-wdc', 'pdns-prod-bnpp-bastion', 'pdns-prod-cp-wdc', 'pdns-prod-cp-dal', 'pdns-prod-dal10', 'pdns-prod-dal12', 'pdns-prod-dal13', 'pdns-prod-wdc04', 'pdns-prod-wdc06', 'pdns-prod-wdc07', 'pdns-prod-lon04', 'pdns-prod-lon05', 'pdns-prod-lon06', 'pdns-prod-fra02', 'pdns-prod-fra04', 'pdns-prod-fra05', 'pdns-prod-tok02', 'pdns-prod-tok04', 'pdns-prod-tok05', 'pdns-prod-syd01', 'pdns-prod-syd04', 'pdns-prod-syd05', 'pdns-prod-osa21', 'pdns-prod-osa22', 'pdns-prod-osa23', 'pdns-prod-par04', 'pdns-prod-par05', 'pdns-prod-par06', 'pdns-prod-tor01', 'pdns-prod-tor04', 'pdns-prod-tor05', 'pdns-prod-sao01', 'pdns-prod-sao04', 'pdns-prod-sao05'], description: '')
         choice(name: 'UPDATE_TYPE', choices: ['patch', 'major/minor'], description: 'https://cloud.ibm.com/docs/containers?topic=containers-update')
