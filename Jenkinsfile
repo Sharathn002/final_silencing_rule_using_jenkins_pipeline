@@ -80,6 +80,9 @@ pipeline {
         string(name: 'K8S_VERSION', defaultValue: '', description: 'https://cloud.ibm.com/docs/containers?topic=containers-cs_versions')
         string(name: 'DEPLOY_TOOL_VERISON', defaultValue: 'v3.1.1', description: '')
         string(name: 'SLACK_CHANNEL', defaultValue: 'pdns-slack-test-private', description: '')
+        choice(name: 'region', choices: ['jp_tok','jp_osa','eu_de','eu_gb','us_south','us_east','au_syd','ca_tor', 'br_sao'], description: 'Enter the region where the agent lies ')
+        string(name: 'api_token', defaultValue: '3e91771e-40d2-42cd-96ac-ebe08462c96c', description: 'Enter the api token of that region')
+        string(name: 'duration_in_hours', defaultValue: '1.5', description: 'Enter the duration for the silencing')
     }
 //     triggers {
 //         parameterizedCron('''
@@ -88,14 +91,14 @@ pipeline {
 //         ''')
 //     }
     stages {
-        stage('Setup') {
-            steps {
-                sh '''#!/bin/bash
-                      chmod +x ./scripts/jenkins/kubernetes-upgrade/setup.sh
-                      ./scripts/jenkins/kubernetes-upgrade/setup.sh
-                '''
-            }
-        }
+//         stage('Setup') {
+//             steps {
+//                 sh '''#!/bin/bash
+//                       chmod +x ./scripts/jenkins/kubernetes-upgrade/setup.sh
+//                       ./scripts/jenkins/kubernetes-upgrade/setup.sh
+//                 '''
+//             }
+//         }
         stage('Check for Patch Updates') {
             when {
                 expression {
@@ -174,6 +177,11 @@ pipeline {
                    '''
             }
         }
+         stage('silencing alert') {
+            steps {
+              sh """python3 creating_silencing_rule.py ${params.UPDATE_CLUSTER} ${params.region} ${params.api_token} ${params.duration_in_hours}"""
+            }
+          }
         stage('Disable GLB') {
             when {
                 expression {
