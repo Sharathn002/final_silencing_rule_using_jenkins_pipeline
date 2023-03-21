@@ -81,12 +81,12 @@ pipeline {
         string(name: 'DEPLOY_TOOL_VERISON', defaultValue: 'v3.1.1', description: '')
         string(name: 'SLACK_CHANNEL', defaultValue: 'pdns-slack-test-private', description: '')
     }
-    triggers {
-        parameterizedCron('''
-            H 9 * * 1 %UPDATE_CLUSTER=scan;UPDATE_TYPE=major/minor
-            H 8 * * 1-5 %UPDATE_CLUSTER=scan;UPDATE_TYPE=patch
-        ''')
-    }
+//     triggers {
+//         parameterizedCron('''
+//             H 9 * * 1 %UPDATE_CLUSTER=scan;UPDATE_TYPE=major/minor
+//             H 8 * * 1-5 %UPDATE_CLUSTER=scan;UPDATE_TYPE=patch
+//         ''')
+//     }
     stages {
         stage('Setup') {
             steps {
