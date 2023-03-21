@@ -48,7 +48,7 @@
 // }
 
 pipeline {
-    agent { label 'kube_pod_slave' }
+    agent any
 //     environment {
 //         GHE_SSH_KEY = credentials('GITHUB_IBM_SSH_KEY')
 //         GHE_API_KEY = credentials('GITHUB_IBM_API_KEY')
