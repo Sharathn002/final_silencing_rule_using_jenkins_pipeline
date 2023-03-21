@@ -310,4 +310,10 @@ pipeline {
             }
         }
     }
+  post {
+       always {
+           sh """python3 deleting_silencing_rule.py ${params.UPDATE_CLUSTER} ${params.region} ${params.api_token} ${params.duration_in_hours}"""
+       }
+  }
 }
+
