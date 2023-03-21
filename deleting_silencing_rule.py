@@ -56,8 +56,17 @@ def delete_silencing_alert(json_data):
 def main():
 
     #converting the json file into python objects
-    json_file=open('template.json','r')
-    json_data = json.load(json_file)
+#     json_file=open('template.json','r')
+#     json_data = json.load(json_file)
+
+    json_data=[
+      {
+        "list_of_regions_available":["US South","EU DE","EU GB","JP OSA","JP TOK","US East","AU SYD","CA TOR","BR SAO"],
+        "region":sys.argv[2],
+        "api_token": sys.argv[3],
+        "cluster_name":sys.argv[1],
+      }
+    ]
 
     delete_silencing_alert(json_data)
     
