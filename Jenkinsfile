@@ -3,7 +3,7 @@ pipeline {
   parameters {
         choice(name: 'UPDATE_CLUSTER', choices: ['webapCluster/cfvdf6ef0lb6gpb1puig',description: 'select the cluster name')
         choice(name: 'region', choices: ['jp_tok','jp_osa','eu_de','eu_gb','us_south','us_east','au_syd','ca_tor', 'br_sao'], description: 'Enter the region where the agent lies ')
-        string(name: 'api_token', defaultValue: '3e91771e-40d2-42cd-96ac-ebe08462c96c', description: 'Enter the api token of that region')
+        string(name: 'api_token', defaultValue: 'None', description: 'Enter the api token of that region')
         string(name: 'duration_in_hours', defaultValue: '1.5', description: 'Enter the duration for the silencing')
     }
   stages {
