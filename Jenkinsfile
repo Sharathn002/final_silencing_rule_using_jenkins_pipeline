@@ -5,7 +5,7 @@ pipeline {
     }
   parameters {
         choice(name: 'UPDATE_CLUSTER', choices: ['second_cluster/cgmehjrf03au3mmcfetg'], description: '')
-        string(name: 'TIMEOUT', defaultValue: '4h', description: '')
+        string(name: 'TIMEOUT', defaultValue: '4', description: '')
     }
   stages {
     stage('silencing alert') {
@@ -14,11 +14,11 @@ pipeline {
             }
           }
   }
-  post {
-   always {
-       sh """python3 silencing_rule.py delete --cluster_name ${params.UPDATE_CLUSTER} --api_token ${api_token} """
-   }
-}
+//   post {
+//    always {
+//        sh """python3 silencing_rule.py delete --cluster_name ${params.UPDATE_CLUSTER} --api_token ${api_token} """
+//    }
+// }
 
 }
                                                  
