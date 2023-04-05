@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('silencing alert') {
             steps {
-              sh """python3 silencing_rule.py create --cluster_name ${params.UPDATE_CLUSTER} --api_token ${api_token} --duration_in_hours ${params.duration_in_hours}"""
+              sh """python3 silencing_rule.py create --cluster_name ${params.UPDATE_CLUSTER} --api_token ${api_token} --duration_in_hours ${params.TIMEOUT}"""
             }
           }
   }
