@@ -4,9 +4,8 @@ pipeline {
     api_token = credentials('sysdig_api_token')
     }
   parameters {
-        string(name: 'UPDATE_CLUSTER', defaultValue: '', description: 'Enter the cluster name')
-//         string(name: 'api_token', defaultValue: '', description: 'Enter the api token of that monitoring instance')
-        string(name: 'duration_in_hours', defaultValue: '1.5', description: 'Enter the duration for the silencing')
+        choice(name: 'UPDATE_CLUSTER', choices: ['second_cluster/cgmehjrf03au3mmcfetg'], description: '')
+        string(name: 'TIMEOUT', defaultValue: '4h', description: '')
     }
   stages {
     stage('silencing alert') {
