@@ -12,10 +12,6 @@ pipeline {
             }
           }
   }
-  post {
-       always {
-           sh """python3 silencing_rule.py delete --cluster_name ${params.UPDATE_CLUSTER} --api_token ${params.api_token} """
-       }
-  }
+
 }
                                                  
