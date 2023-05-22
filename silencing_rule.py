@@ -8,6 +8,7 @@ import argparse
 def notification_channel_id(api_token,url):
     headers = {"Authorization": f'Bearer {api_token}'}
     response = requests.get(url, headers=headers)
+    print(response.json())
     # print(response.json()["alerts"][0]["notificationChannelIds"])
     return response.json()["alerts"][0]["notificationChannelIds"] 
 
