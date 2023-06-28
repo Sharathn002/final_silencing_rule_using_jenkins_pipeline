@@ -49,30 +49,30 @@ pipeline {
                     // echo "SYSDIG_GUID: ${sysdigGuid}"
                     // echo "SYSDIG_HOST: ${sysdigHost}"
                     // echo "KEY: ${key}"
-case "${UPDATE_CLUSTER}" in
-    *cp-dev* | *dp-dev* | *cp-stage* | *dp-stage*)
-    SYSDIG_GUID="63"
-    SYSDIG_HOST="https://us-south.monitoring.cloud.ibm.com"
-    KEY="$PDNS_STAGE_API_KEY" 
-    ;;
-
-    *prod-cp* | dev-dp | pdns-prod-bnpp-bastion)
-    SYSDIG_GUID="FIXME-PROD-CP"
-    SYSDIG_HOST="https://us-south.monitoring.cloud.ibm.com"
-    KEY="PDNS_PROD_API_KEY" #FIXME 
-    ;;
-
-    pdns-prod*)
-    SYSDIG_GUID="FIXME-PROD-DP"
-    SYSDIG_HOST="https://us-south.monitoring.cloud.ibm.com"
-    KEY="PDNS_PROD_API_KEY" #FIXME 
-    ;;
-
-    *)
-    echo "noop"
-    ;;
-esac
-echo "$SYSDIG_GUID \n $SYSDIG_HOST \n $KEY"
+                    case "${UPDATE_CLUSTER}" in
+                        *cp-dev* | *dp-dev* | *cp-stage* | *dp-stage*)
+                        SYSDIG_GUID="63"
+                        SYSDIG_HOST="https://us-south.monitoring.cloud.ibm.com"
+                        KEY="$PDNS_STAGE_API_KEY" 
+                        ;;
+                    
+                        *prod-cp* | dev-dp | pdns-prod-bnpp-bastion)
+                        SYSDIG_GUID="FIXME-PROD-CP"
+                        SYSDIG_HOST="https://us-south.monitoring.cloud.ibm.com"
+                        KEY="PDNS_PROD_API_KEY" #FIXME 
+                        ;;
+                    
+                        pdns-prod*)
+                        SYSDIG_GUID="FIXME-PROD-DP"
+                        SYSDIG_HOST="https://us-south.monitoring.cloud.ibm.com"
+                        KEY="PDNS_PROD_API_KEY" #FIXME 
+                        ;;
+                    
+                        *)
+                        echo "noop"
+                        ;;
+                    esac
+                    echo "$SYSDIG_GUID \n $SYSDIG_HOST \n $KEY"
                     
                     // Run Python script with the assigned values
                     sh "python your_script.py --sysdig-guid ${sysdigGuid} --sysdig-host ${sysdigHost} --key ${key}"
