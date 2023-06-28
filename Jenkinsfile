@@ -45,18 +45,20 @@ pipeline {
                             return
                     }
                     // Use the assigned values in subsequent steps or actions
+                    echo "im echoing here"
                     echo "SYSDIG_GUID: ${sysdigGuid}"
                     echo "SYSDIG_HOST: ${sysdigHost}"
                     echo "KEY: ${key}"
+                    echo "Im ending the echoing here
                 }
             }
         }
       }
-  post {
-   always {
-       sh """python3 silencing_rule.py delete --UPDATE_CLUSTER ${params.UPDATE_CLUSTER} --API_TOKEN ${API_TOKEN} """
-   }
-}
+//   post {
+//    always {
+//        sh """python3 silencing_rule.py delete --UPDATE_CLUSTER ${params.UPDATE_CLUSTER} --API_TOKEN ${API_TOKEN} """
+//    }
+// }
 
 }
 
