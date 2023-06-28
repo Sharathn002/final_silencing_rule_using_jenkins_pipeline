@@ -49,7 +49,7 @@ pipeline {
                     echo "SYSDIG_GUID: ${sysdigGuid}"
                     echo "SYSDIG_HOST: ${sysdigHost}"
                     echo "KEY: ${key}"
-                    echo "Im ending the echoing here
+                    echo "Im ending the echoing here"
                 }
             }
         }
