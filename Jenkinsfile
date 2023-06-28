@@ -18,8 +18,9 @@ pipeline {
                     def sysdigGuid
                     def sysdigHost
                     def key
+                    echo "sdfdsfsdf"
 
-                    switch (${UPDATE_CLUSTER}) {
+                    switch (params.UPDATE_CLUSTER) {
                         case ~/.*cp-dev.*/:
                         case ~/.*dp-dev.*/:
                         case ~/.*cp-stage.*/:
