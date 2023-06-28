@@ -44,6 +44,10 @@ pipeline {
                             echo "noop"
                             return
                     }
+                    // Use the assigned values in subsequent steps or actions
+                    echo "SYSDIG_GUID: ${sysdigGuid}"
+                    echo "SYSDIG_HOST: ${sysdigHost}"
+                    echo "KEY: ${key}"
                 }
             }
         }
