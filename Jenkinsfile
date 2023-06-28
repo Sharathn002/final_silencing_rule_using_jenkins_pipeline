@@ -27,19 +27,19 @@ pipeline {
                         case ~/.*dp-stage.*/:
                             sysdigGuid = "639e207727c74"
                             sysdigHost = "https://us-south.monitoud.ibm.com"
-                            key = env.PDNS_STAGE_API_KEY
+                            key =  "this is for the stage and dev"
                             break
                         case ~/.*prod-cp.*/:
                         case ~/.*dev-dp.*/:
                         case ~/.*pdns-prod-bnpp-bastion.*/:
                             sysdigGuid = "FIXME-PROD-CP"
                             sysdigHost = "https://us-south.monitoring.cloud.ibm.com"
-                            key = env.PDNS_PROD_API_KEY
+                            key = "this is also for the prod"
                             break
                         case ~/.*pdns-prod.*/:
                             sysdigGuid = "FIXME--DP"
                             sysdigHost = "https://u.cloud.ibm.com"
-                            key = env.PDNS_PROD_API_KEY
+                            key = "this is for the prod"
                             break
                         default:
                             echo "noop"
