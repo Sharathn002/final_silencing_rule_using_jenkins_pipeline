@@ -44,6 +44,7 @@ pipeline {
                     echo "SYSDIG_GUID: ${sysdigGuid}"
                     echo "KEY: ${key}"
                     echo "Im ending the echoing here"
+                    sh 'pip install requests'
                     sh """python3 silencing_rule.py create --UPDATE_CLUSTER ${params.UPDATE_CLUSTER} --API_TOKEN  ${key} --IBMInstanceID ${sysdigGuid} --TIMEOUT ${params.TIMEOUT}"""
                 }
             }
