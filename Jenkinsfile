@@ -25,7 +25,7 @@ pipeline {
                         case ~/.*dp-dev.*/:
                         case ~/.*cp-stage.*/:
                         case ~/.*dp-stage.*/:
-                            sysdigGuid = "639e207727c74"
+                            sysdigGuid = "dev and stage"
                             sysdigHost = "https://us-south.monitoud.ibm.com"
                             key =  "this is for the stage and dev"
                             break
@@ -47,6 +47,7 @@ pipeline {
                     }
                     // Use the assigned values in subsequent steps or actions
                     echo "im echoing here"
+                    echo "params.UPDATE_CLUSTER"
                     echo "SYSDIG_GUID: ${sysdigGuid}"
                     echo "SYSDIG_HOST: ${sysdigHost}"
                     echo "KEY: ${key}"
