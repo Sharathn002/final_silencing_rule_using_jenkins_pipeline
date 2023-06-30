@@ -46,12 +46,14 @@ pipeline {
                             return
                     }
                     // Use the assigned values in subsequent steps or actions
+                    
                     echo "im echoing here"
-                    echo "params.UPDATE_CLUSTER"
+                    echo "${params.UPDATE_CLUSTER}"
                     echo "SYSDIG_GUID: ${sysdigGuid}"
                     echo "SYSDIG_HOST: ${sysdigHost}"
                     echo "KEY: ${key}"
                     echo "Im ending the echoing here"
+                    sh """python3 arg_parse.py delete --UPDATE_CLUSTER ${params.UPDATE_CLUSTER} --API_TOKEN ${params.API_TOKEN} --IBMInstanceID ${sysdigGuid}
                 }
             }
         }
