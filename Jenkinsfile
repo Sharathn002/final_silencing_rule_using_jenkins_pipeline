@@ -12,48 +12,39 @@ pipeline {
     }
   
       stages {
-        stage('Example Stage') {
+        stage('create Stage') {
             steps {
                 script {
                     def sysdigGuid
                     def sysdigHost
                     def key
-                    echo "sdfdsfsdf"
 
                     switch (params.UPDATE_CLUSTER) {
                         case ~/.*cp-dev.*/:
                         case ~/.*dp-dev.*/:
                         case ~/.*cp-stage.*/:
                         case ~/.*dp-stage.*/:
-                            sysdigGuid = "dev and stage"
-                            sysdigHost = "https://us-south.monitoud.ibm.com"
-                            key =  "this is for the stage and dev"
+                            sysdigGuid = ""
+                            key =  ""
                             break
                         case ~/.*prod-cp.*/:
                         case ~/.*dev-dp.*/:
                         case ~/.*pdns-prod-bnpp-bastion.*/:
-                            sysdigGuid = "FIXME-PROD-CP"
-                            sysdigHost = "https://us-south.monitoring.cloud.ibm.com"
-                            key = "this is also for the prod"
+                            sysdigGuid = ""
+                            key = ""
                             break
                         case ~/.*pdns-prod.*/:
-                            sysdigGuid = "FIXME--DP"
-                            sysdigHost = "https://u.cloud.ibm.com"
-                            key = "this is for the prod"
+                            sysdigGuid = ""
+                            key = ""
                             break
                         default:
-                            echo "noop"
+                            echo "default case"
                             return
                     }
-                    // Use the assigned values in subsequent steps or actions
-                    
-                    echo "im echoing here"
-                    echo "${params.UPDATE_CLUSTER}"
                     echo "SYSDIG_GUID: ${sysdigGuid}"
-                    echo "SYSDIG_HOST: ${sysdigHost}"
                     echo "KEY: ${key}"
                     echo "Im ending the echoing here"
-                    sh """python3 arg_parse.py delete --UPDATE_CLUSTER ${params.UPDATE_CLUSTER} --API_TOKEN ${params.API_TOKEN} --IBMInstanceID ${sysdigGuid}"""
+                    sh """python3 silencing_rule.py create --UPDATE_CLUSTER ${params.UPDATE_CLUSTER} --API_TOKEN  ${key} --IBMInstanceID ${sysdigGuid} --TIMEOUT ${params.TIMEOUT}"""
                 }
             }
         }
